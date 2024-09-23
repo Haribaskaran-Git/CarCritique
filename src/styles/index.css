@@ -114,22 +114,49 @@ body {
   border: 2px solid black;
 
 }
-.car-name{
-  position: absolute; /* Positioning the car-name */
+.carLogo{
+   
+  mix-blend-mode: multiply;
   top: 150px;
-   /* Distance from the top */
-  left: 20px; /* Distance from the left */
-  color: #007bff; /* Neon green color */
-  text-shadow: 
-    0 0 5px #000, 
-    0 0 10px #14efff, 
-    0 0 15px #14efff, 
-    0 0 20px #14efff, /* Additional colors for neon effect */
-    0 0 30px #14efff, 
-    0 0 40px #14efff;
-  font-family: 'Arial', sans-serif; /* Font family */
-  font-size: 1em; /* Adjust font size */
+  width: 35em;
+
+/* }
+.car-price {
+  color: green;
+    font-size: 24px;
+    position: relative;
+    /* margin-top: 10px; */
+    /* left: -10px; */
+    /* display: flex;
+    align-content: end;
+    /* right: 10em; */
+    /* align-items: stretch;
+    justify-content: space-around;Add some space above */
+} */ */
+
+.car-container{
+  text-align: center;
 }
+
+.car-name{    
+  text-align: center;
+  position: relative;
+  /* top: -125px; */
+  font-size: 75px;
+  opacity: 0.5;
+}
+
+.car-price {
+  background-color: #d3bbbb; 
+  border: 2px solid #2d1111; 
+  border-radius: 10px; 
+  padding: 10px 20px; 
+  display: inline-block; 
+  margin-top: 10px;
+  color: #000; 
+  font-size: 24px;
+}
+
 .carList {
   border: 2px solid black;
   min-width: 50%;
