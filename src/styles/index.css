@@ -112,8 +112,24 @@ body {
 .car {
   min-width: 50%;
   border: 2px solid black;
-}
 
+}
+.car-name{
+  position: absolute; /* Positioning the car-name */
+  top: 150px;
+   /* Distance from the top */
+  left: 20px; /* Distance from the left */
+  color: #007bff; /* Neon green color */
+  text-shadow: 
+    0 0 5px #000, 
+    0 0 10px #14efff, 
+    0 0 15px #14efff, 
+    0 0 20px #14efff, /* Additional colors for neon effect */
+    0 0 30px #14efff, 
+    0 0 40px #14efff;
+  font-family: 'Arial', sans-serif; /* Font family */
+  font-size: 1em; /* Adjust font size */
+}
 .carList {
   border: 2px solid black;
   min-width: 50%;
