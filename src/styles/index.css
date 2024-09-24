@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,200;1,300&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -100,28 +102,24 @@ body {
 
 .navbar {
   grid-area: navbar;
-  border-bottom: 2px solid black;
 }
 
 .carInfoPanel {
   display: flex;
   min-height: 35rem;
-  padding: 2rem;
+  margin: 2rem;
 }
 
 .car {
   min-width: 50%;
-  border: 2px solid black;
 }
 
 .carList {
-  border: 2px solid black;
   min-width: 50%;
 }
 
 .reviews {
   grid-area: reviews;
-  border: 2px solid black;
 }
 
 .navbar,

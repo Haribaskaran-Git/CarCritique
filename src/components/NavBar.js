@@ -10,12 +10,11 @@ const NavBar = () => {
         <p className="logo">CarCritique <GrClosedCaption /></p>
         <div className="nav-search">
           <GrSearch></GrSearch>
-          <input type="text" placeholder="Search for brands, models...." />
+          <input type="text" placeholder="Search for brands...." />
         </div>
         <div className="nav-pages">
           <Link to="/Home">Home <span></span></Link>
           <Link to="/">Log out<span></span></Link>
-          
         </div>
       </div>
     </div>
