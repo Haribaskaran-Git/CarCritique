@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-
+import "../styles/car.css";
 const Car = () => {
   const [isOpen, setIsOpen] = useState(false);
   const colors = ['Red', 'Green', 'Blue', 'Yellow', 'Purple'];
