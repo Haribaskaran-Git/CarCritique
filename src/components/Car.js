@@ -1,12 +1,11 @@
-
-import React, { useState } from 'react';
+import React from 'react';
 import "../styles/car.css";
 const Car = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const colors = ['Red', 'Green', 'Blue', 'Yellow', 'Purple'];
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+  // const [isOpen, setIsOpen] = useState(false);
+  // const colors = ['Red', 'Green', 'Blue', 'Yellow', 'Purple'];
+  // const toggleDropdown = () => {
+  //   setIsOpen(!isOpen);
+  // };
 
   return (
     <div className='car'>
