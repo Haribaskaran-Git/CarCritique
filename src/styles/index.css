@@ -8,6 +8,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'poppins';
 }
 
 body {
@@ -116,7 +117,6 @@ body {
 
 .car {
   min-width: 50%;
-  border: 2px solid black;
 }
 
 .carList {

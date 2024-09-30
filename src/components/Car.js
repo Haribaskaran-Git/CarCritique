@@ -27,7 +27,7 @@ const Car = () => {
           </div> */}
         <img className='carLogo' src="images/car.jpg" alt="Logo" />
         {/* <h1 className='car-price'>{formattedPrice}</h1> */}
-        <div class="grid-content">
+        <div className="grid-content">
                 <h3>2024 Renault Kwid</h3>
                 <span className="mileage">Mileage: 15 km/l</span>
                 <h2>₹5,64,701 - ₹9,64,701</h2>

@@ -1,52 +1,66 @@
-.carList-container{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    padding: 2rem;
-}
-.carList-title{
-    font-family: "Poppins", sans-serif;
-    font-weight: 300;
-    font-style: italic;
+
+.carList-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-
-.carList-car-image img{
-    border-radius: 20px;
+.carList-filter {
+  display: none;
 }
 
-.carList-filter{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+.carList-filter-open{
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: italic;
+  width: 100%;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.carList-search input{
-    border: none;
-    outline: none;
-    background: transparent;
-    color: black;
-    padding: 5px;
-    width: 200px;
-    border-bottom: 2px solid black;
+.carList-filter-open span {
+  color: rgb(255, 0, 0);
+  font-weight: bold;
 }
 
-.carList-show{
-    margin: auto;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
+.carList-search input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: black;
+  padding: 5px;
+  width: 200px;
+  border-bottom: 2px solid black;
 }
 
-.carList-car{
-    width: 45%;
-    padding: 2rem;
-    border-radius: 10px;
-    transition: box-shadow 0.4s;
+.carList-show {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  gap: 1rem;
 }
 
-.carList-car:hover{
-    box-shadow: 0px 0px 2px 1px rgb(60, 59, 59);
+.carList-car {
+  width: 45%;
+  padding: 0.3rem;
+  transition: box-shadow 0.4s;
+}
+
+.carList-car:hover {
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.549);
+}
+
+/* .car .car .car .car:hover .car:blur*/
+.carList-car:hover ~ .carList-car:not(:hover) {
+  filter: blur(2px);
+}
+
+/*.car:blur .car:blur .car:hover .car */
+.carList-car:has(~ .carList-car:hover) {
+  filter: blur(2px);
 }
