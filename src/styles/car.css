@@ -1,8 +1,8 @@
-.car {
-    min-width: 50%;
-    border: 2px solid black;
-  
+
+:root {
+    --font-col-black: #000;
   }
+
   .carLogo{
      
     mix-blend-mode: multiply;
@@ -22,6 +22,7 @@
       /* align-items: stretch;
       justify-content: space-around;Add some space above */
   } */ */
+
   
   .car-container{
     text-align: center;
@@ -55,8 +56,8 @@
       position: relative;
       right: -20px;
       margin-top: 15px;
-  
   }
+  
   
   .mileage {
     font-size: 20px; 
@@ -81,6 +82,7 @@
       background: transparent;
       border: 2px solid var(--font-col-black); 
       transition: 0.5s;
+      border-radius: 10px;
       cursor: pointer;
       margin-left: 20px;
   }
@@ -92,10 +94,7 @@
   }
   
   
-  
-  
- 
- 
+
  
   
   
