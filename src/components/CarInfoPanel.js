@@ -2,11 +2,11 @@ import React from 'react'
 import Car from './Car'
 import CarList from './CarList'
 
-const CarInfoPanel = ({brandName,filter}) => {
+const CarInfoPanel = ({brandName,filter,handleClick}) => {
   return (
     <div className='carInfoPanel'>
-        <Car></Car>
-        <CarList brandName={brandName} filter={filter}></CarList>
+        <Car handleClick={handleClick}></Car>
+        <CarList brandName={brandName} filter={filter} ></CarList>
     </div>
   )
 }

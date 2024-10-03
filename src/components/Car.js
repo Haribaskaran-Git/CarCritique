@@ -1,7 +1,6 @@
 import React from "react";
 import "../styles/car.css";
-import { Link } from "react-router-dom";
-const Car = () => {
+const Car = ({ handleClick }) => {
   return (
     <div className="car">
       <div className="car-container">
@@ -17,9 +16,7 @@ const Car = () => {
             <p className="mileage">Mileage: 15 km/l</p>
             <p className="price">₹5,64,701 - ₹9,64,701</p>
           </div>
-          <Link to="/Reviews">
-            <button>SEE REVIEW</button>
-          </Link>
+          <button onClick={handleClick}>SEE REVIEW</button>
         </div>
       </div>
     </div>

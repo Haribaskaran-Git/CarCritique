@@ -41,7 +41,7 @@
   justify-content: space-between;
   align-items: center;
 }
-.car-details-wrapper a[href="/Reviews"] button {
+.car-details-wrapper button {
   color: var(--font-col-black);
   font-size: 14px;
   padding: 12px 34px;
@@ -51,7 +51,7 @@
   cursor: pointer;
 }
 
-.car-details-wrapper a[href="/Reviews"] button:hover {
+.car-details-wrapper button:hover {
   background: #151515;
   color: #ffffff;
   transition: 0.5s;
