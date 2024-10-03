@@ -13,7 +13,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(255, 255, 255);
 }
 
 .login-container {
@@ -102,7 +102,7 @@ body {
   grid-template-areas:
     "navbar"
     "carInfoPanel"
-    "reviews";
+    "footer";
 }
 
 .navbar {
@@ -123,14 +123,14 @@ body {
   min-width: 50%;
 }
 
-.reviews {
-  grid-area: reviews;
+.footer {
+  grid-area: footer;
 }
 
 .navbar,
 .car,
 .carList,
-.reviews {
+.footer {
   display: flex;
   justify-content: center;
   align-items: center;

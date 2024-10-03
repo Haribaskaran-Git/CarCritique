@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NavBar from './../components/NavBar';
 import CarInfoPanel from "../components/CarInfoPanel";
-import Reviews from "../components/Reviews";
+import Footer from "../components/Footer";
 
 
 function Home() {
@@ -19,7 +19,7 @@ function Home() {
     <div className="home">
       <NavBar setBrandName={setBrandName} setFilter={setFilter} debounce={debounce}></NavBar>
       <CarInfoPanel brandName={brandName} filter={filter}></CarInfoPanel>
-      <Reviews></Reviews>
+      <Footer></Footer>
     </div>
   );
 }
