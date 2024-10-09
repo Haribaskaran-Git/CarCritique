@@ -1,3 +1,21 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* Adjust based on your layout */
+  font-size: 20px;
+  animation: fadeIn 1.2s infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .carList-container {
   width: 100%;
   display: flex;
@@ -5,12 +23,12 @@
   align-items: center;
 }
 
-.carList-car-show{
+.carList-car-show {
   width: 100%;
 }
 
 .carList-car-list {
-  width: 100%;
+  width: 600px;
   min-height: 35rem;
   padding: 2rem;
   display: flex;
@@ -22,13 +40,12 @@
   border-radius: 5px;
 }
 
-.carList-filter-wrapper{
+.carList-filter-wrapper {
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 1rem;
 }
-
 
 .carList-filter {
   display: none;
@@ -70,12 +87,12 @@
 
 /* .car .car .car .car:hover .car:blur*/
 .carList-car:hover ~ .carList-car:not(:hover) {
-  filter: blur(2px);
+  filter: grayscale(1);
 }
 
 /*.car:blur .car:blur .car:hover .car */
 .carList-car:has(~ .carList-car:hover) {
-  filter: blur(2px);
+  filter: grayscale(1);
 }
 
 .pagination {

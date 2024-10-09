@@ -1,35 +1,102 @@
+import { useState } from "react";
 import { GrFormFilter } from "react-icons/gr";
 
-const CarFilter = ({toggleFilter,handleFilter,isOpen}) => {
-    return (
-        <div className="car-filter">
-            <GrFormFilter size={"30px"}  onClick={toggleFilter} />
-            <div id="car-filter-dropdown" className={isOpen ? "open" : ""}>
-              <form className="filter-form" method="GET">
-                <div className="radio-group">
-                  <input type="radio" id="economy" name="segment" value="Economy" onChange={handleFilter} />
-                  <label htmlFor="economy">Economy</label>
-                </div>
-                <div className="radio-group">
-                  <input type="radio" id="midRange" name="segment" value="Mid-Range"  onChange={handleFilter}/>
-                  <label htmlFor="midRange">Mid-range</label>
-                </div>
-                <div className="radio-group">
-                  <input type="radio" id="premium" name="segment" value="Premium"  onChange={handleFilter}/>
-                  <label htmlFor="premium">Premium</label>
-                </div>
-                <div className="radio-group">
-                  <input type="radio" id="luxury" name="segment" value="Luxury" onChange={handleFilter} />
-                  <label htmlFor="luxury">Luxury</label>
-                </div>
-                <div className="radio-group">
-                  <input type="radio" id="posh" name="segment" value="Posh" onChange={handleFilter} />
-                  <label htmlFor="posh">Posh</label>
-                </div>
-              </form>
+const CarFilter = ({ toggleFilter, setFilter, setBrandName, isOpen }) => {
+  const [carBrand] = useState([
+    "All brands",
+    "Astonmartin",
+    "Audi",
+    "Bajaj",
+    "Bentley",
+    "Bmw",
+    "Byd",
+    "Citroen",
+    "Ferrari",
+    "Force",
+    "Honda",
+    "Hyundai",
+    "Isuzu",
+    "Jaguar",
+    "Jeep",
+    "Kia",
+    "Lamborghini",
+    "Landrover",
+    "Lexus",
+    "Mahindra",
+    "Maserati",
+    "Mclaren",
+    "Mercedes-Benz",
+    "Mg",
+    "Mini-Cooper",
+    "Nissan",
+    "PMV",
+    "Porsche",
+    "Pravaig",
+    "Renault",
+    "Rolls-Royce",
+    "Skoda",
+    "Strom-Motors",
+    "Tata",
+    "Toyota",
+    "Volkswagen",
+    "Volvo",
+  ]);
+  const [segments] = useState(["All segments", "ECONOMY", "MID-RANGE", "LUXURY", "PREMIUM", "Poshcars"]);
+  return (
+    <div className="car-filter">
+      <GrFormFilter size={"30px"} onClick={toggleFilter} />
+      <div id="car-filter-dropdown" className={isOpen ? "open" : ""}>
+        <form className="filter-form" method="GET">
+          <div className="filter-form-brand">
+            <p>Brand</p>
+            <div className="brand-radio-group">
+              {carBrand.map((car) => {
+                return (
+                  <div className="radio-group" key={car}>
+                    <input
+                      type="radio"
+                      id={car}
+                      name="car"
+                      value={car}
+                      onChange={() => {
+                        car === "All brands" ? setBrandName("") : setBrandName(car);
+                      }}
+                    />
+                    <label htmlFor={car} style={car === "All brands" ? { textDecoration: "underline" } : {}}>
+                      {car}
+                    </label>
+                  </div>
+                );
+              })}
             </div>
           </div>
-    )
- }
+          <div className="filter-form-segment">
+            <p>Segment</p>
+            <div className="segment-radio-group">
+              {segments.map((segment) => {
+                return (
+                  <div className="radio-group" key={segment}>
+                    <input
+                      type="radio"
+                      id={segment}
+                      name="segment"
+                      value={segment}
+                      onChange={() => {
+                        segment === "All segments" ? setFilter("") : setFilter(segment);
+                      }}
+                    />
+                    <label htmlFor={segment} style={segment === "All segments" ? { textDecoration: "underline" } : {}}>
+                      {segment}
+                    </label>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
 
 export default CarFilter;

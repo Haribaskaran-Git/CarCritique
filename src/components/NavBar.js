@@ -13,10 +13,6 @@ const NavBar = ({ setBrandName, debounce, setFilter }) => {
     });
   };
 
-  const handleFilter = (e) => {
-    setFilter(e.target.value);
-  };
-
   return (
     <div className="navbar">
       <div className="nav-container">
@@ -28,11 +24,16 @@ const NavBar = ({ setBrandName, debounce, setFilter }) => {
             <GrSearch></GrSearch>
             <input
               type="text"
-              placeholder="Search for brands, models...."
+              placeholder="Search for brands..."
               onChange={(e) => debounce(() => setBrandName(e.target.value), 1000)}
             />
           </div>
-          <CarFilter toggleFilter={toggleFilter} handleFilter={handleFilter} isOpen={isOpen}></CarFilter>
+          <CarFilter
+            toggleFilter={toggleFilter}
+            setFilter={setFilter}
+            setBrandName={setBrandName}
+            isOpen={isOpen}
+          ></CarFilter>
         </div>
         <div className="nav-pages">
           <Link to="/Home">

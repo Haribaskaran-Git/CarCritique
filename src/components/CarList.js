@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import cars from "../dummy_data/data";
+
 import "../styles/carList.css";
 
-const CarList = ({ brandName, filter }) => {
+const CarList = ({ brandName, filter, models, loading, error }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const carsPerPage = 6;
+  const reviewsPerPage = 6;
 
   // Calculate total pages
-  const totalPages = Math.ceil(cars.length / carsPerPage);
+  const totalPages = Math.ceil(models.length / reviewsPerPage);
 
-  // Get current cars
-  const indexOfLastCar = currentPage * carsPerPage;
-  const indexOfFirstCar = indexOfLastCar - carsPerPage;
-  const currentCars = cars.slice(indexOfFirstCar, indexOfLastCar);
+  // Get current models
+  const indexOfLastModels = currentPage * reviewsPerPage;
+  const indexOfFirstModels = indexOfLastModels - reviewsPerPage;
+  const currentModels = models.slice(indexOfFirstModels, indexOfLastModels);
   return (
     <div className="carList">
       <div className="carList-container">
@@ -23,25 +23,32 @@ const CarList = ({ brandName, filter }) => {
                 Results for <span>"{brandName}"</span>.
               </p>
             </div>
-            <div className={Boolean(filter) ? "carList-filter-open" : "carList-filter"}>
+            <div className={filter.length ? "carList-filter-open" : "carList-filter"}>
               <p>
                 Filtered based on <span>"{filter}"</span> segment.
               </p>
             </div>
           </div>
           <div className="carList-car-list">
-            {currentCars.map((car) => {
-              return (
-                <div className="carList-car" key={car.id}>
+            {error ? (
+              <div className="error">Something went wrong...</div>
+            ) : loading ? (
+              <div className="loading">Loading...</div> // Loading state
+            ) : currentModels.length === 0 ? (
+              <div className="no-models">No models for this brand.</div> // No models message
+            ) : (
+              currentModels.map((model) => (
+                <div key={model.id} className="carList-car">
                   <div className="carList-car-image">
-                    <img src={car.car_image} alt="" width={"100%"} />
+                    <img src="/images/carDummy.jpg" alt="" width={"100%"} />
                   </div>
-                  <p className="carList-car-name">{car.car_name}</p>
-                  <p className="carList-car-ratings">{car.ratings}&#11088;</p>
+                  <p className="carList-car-name">{model.Model_Name}</p>
+                  <p className="carList-car-ratings">{model.Average_Rating}&#11088;</p>
                 </div>
-              );
-            })}
+              ))
+            )}
           </div>
+
           <div className="pagination">
             <button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} disabled={currentPage === 1}>
               Previous

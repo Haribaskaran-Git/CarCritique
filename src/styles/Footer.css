@@ -1,0 +1,36 @@
+.footer {
+  background-color: #282c34;
+  color: white;
+  padding: 20px;
+}
+
+.footer-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-info {
+  margin: 10px 0;
+}
+
+.copyright{
+  align-self: flex-end;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 24px; /* Adjust the size of the icons */
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  color: #61dafb; /* Change color on hover */
+}
