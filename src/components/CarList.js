@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "../styles/carList.css";
 
-const CarList = ({ brandName, filter, models, loading, error }) => {
+const CarList = ({ brandName, filter, models, loading, error,setModelDetail }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const reviewsPerPage = 6;
 
@@ -30,21 +30,23 @@ const CarList = ({ brandName, filter, models, loading, error }) => {
             </div>
           </div>
           <div className="carList-car-list">
-            {error ? (
-              <div className="error">Something went wrong...</div>
+            {Boolean(error.message) ? (
+              <div className="error">{error.message}</div>
             ) : loading ? (
               <div className="loading">Loading...</div> // Loading state
             ) : currentModels.length === 0 ? (
-              <div className="no-models">No models for this brand.</div> // No models message
+              <div className="no-models">No models found.</div> // No models message
             ) : (
               currentModels.map((model) => (
-                <div key={model.id} className="carList-car">
-                  <div className="carList-car-image">
-                    <img src="/images/carDummy.jpg" alt="" width={"100%"} />
+                <button key={model.id} type="submit" className="carList-car" onClick={()=>setModelDetail(model)}>
+                  <div>
+                    <div className="carList-car-image">
+                      <img src="/images/carDummy.jpg" alt="" width={"100%"} />
+                    </div>
+                    <p className="carList-car-name">{model.Model_Name}</p>
+                    <p className="carList-car-ratings">{model.Average_Rating}&#11088;</p>
                   </div>
-                  <p className="carList-car-name">{model.Model_Name}</p>
-                  <p className="carList-car-ratings">{model.Average_Rating}&#11088;</p>
-                </div>
+                </button>
               ))
             )}
           </div>

@@ -20,13 +20,11 @@ const CarFilter = ({ toggleFilter, setFilter, setBrandName, isOpen }) => {
     "Jeep",
     "Kia",
     "Lamborghini",
-    "Landrover",
     "Lexus",
     "Mahindra",
     "Maserati",
     "Mclaren",
     "Mercedes-Benz",
-    "Mg",
     "Mini-Cooper",
     "Nissan",
     "PMV",
@@ -41,13 +39,13 @@ const CarFilter = ({ toggleFilter, setFilter, setBrandName, isOpen }) => {
     "Volkswagen",
     "Volvo",
   ]);
-  const [segments] = useState(["All segments", "ECONOMY", "MID-RANGE", "LUXURY", "PREMIUM", "Poshcars"]);
+  const [segments] = useState(["All segments", "Economy", "Midrange", "Luxury", "Premiumcars", "Poshcars"]);
   return (
     <div className="car-filter">
       <GrFormFilter size={"30px"} onClick={toggleFilter} />
       <div id="car-filter-dropdown" className={isOpen ? "open" : ""}>
         <form className="filter-form" method="GET">
-          <div className="filter-form-brand">
+        {isOpen&&<div className="filter-form-brand">
             <p>Brand</p>
             <div className="brand-radio-group">
               {carBrand.map((car) => {
@@ -69,8 +67,8 @@ const CarFilter = ({ toggleFilter, setFilter, setBrandName, isOpen }) => {
                 );
               })}
             </div>
-          </div>
-          <div className="filter-form-segment">
+          </div>}
+          {isOpen&&<div className="filter-form-segment">
             <p>Segment</p>
             <div className="segment-radio-group">
               {segments.map((segment) => {
@@ -92,7 +90,7 @@ const CarFilter = ({ toggleFilter, setFilter, setBrandName, isOpen }) => {
                 );
               })}
             </div>
-          </div>
+          </div>}
         </form>
       </div>
     </div>

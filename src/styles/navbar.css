@@ -76,7 +76,7 @@
   width: 0px;
   opacity: 0;
   padding: 0px;
-  display: none;
+  display: flex;
   transition: opacity 0.3s, width 0.4s;
 }
 .filter-form-brand,

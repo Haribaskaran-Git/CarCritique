@@ -1,11 +1,11 @@
 import React from "react";
 import "../styles/car.css";
-const Car = ({ handleClick }) => {
+const Car = ({ handleClick,modelDetail }) => {
   return (
     <div className="car">
       <div className="car-container">
         <div className="car-name">
-          <h3>RENAULT</h3>
+          <h3>{modelDetail.Model_Name}</h3>
         </div>
         <div className="carLogo">
           <img src="images/car.jpg" alt="Logo" />
@@ -13,8 +13,8 @@ const Car = ({ handleClick }) => {
         <div className="car-details-wrapper">
           <div className="car-content">
             <p className="model">2024 Renault Kwid</p>
-            <p className="mileage">Mileage: 15 km/l</p>
-            <p className="price">₹5,64,701 - ₹9,64,701</p>
+            <p className="mileage">{modelDetail.Average_Rating}</p>
+            <p className="price">{modelDetail.Price}</p>
           </div>
           <button onClick={handleClick}>SEE REVIEW</button>
         </div>
