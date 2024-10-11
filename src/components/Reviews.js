@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Review.css";
 
-function Reviews({ title ,reviews}) {
+function Reviews({ title,reviews}) {
   // const initialReviews = [
   //   {
   //     name: "John Doe",

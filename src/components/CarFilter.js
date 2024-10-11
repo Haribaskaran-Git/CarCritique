@@ -4,7 +4,7 @@ import { GrFormFilter } from "react-icons/gr";
 const CarFilter = ({ toggleFilter, setFilter, setBrandName, isOpen }) => {
   const [carBrand] = useState([
     "All brands",
-    "Astonmartin",
+    "Aston martin",
     "Audi",
     "Bajaj",
     "Bentley",

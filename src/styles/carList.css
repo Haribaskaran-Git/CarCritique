@@ -39,6 +39,23 @@
   border: 1px solid #e0e0e0;
   border-radius: 5px;
 }
+.model-filter {
+  margin: 1rem 0;
+}
+
+.model-filter label {
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+.model-filter select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
 
 .carList-filter-wrapper {
   width: 100%;

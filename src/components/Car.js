@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/car.css";
-const Car = ({ handleClick,modelDetail }) => {
+const Car = ({ handleScrollClick,modelDetail }) => {
   return (
     <div className="car">
       <div className="car-container">
@@ -13,10 +13,10 @@ const Car = ({ handleClick,modelDetail }) => {
         <div className="car-details-wrapper">
           <div className="car-content">
             <p className="model">2024 Renault Kwid</p>
-            <p className="mileage">{modelDetail.Average_Rating}</p>
+            <p className="mileage">Average_rating-{modelDetail.Average_Rating}</p>
             <p className="price">{modelDetail.Price}</p>
           </div>
-          <button onClick={handleClick}>SEE REVIEW</button>
+          <button onClick={handleScrollClick}>SEE REVIEW</button>
         </div>
       </div>
     </div>

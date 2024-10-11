@@ -6,7 +6,7 @@ import Reviews from "../components/Reviews";
 import axios from "axios";
 
 const client = axios.create({
-  baseURL: "http://13.49.227.151:8000",
+  baseURL: "http://16.16.179.209:8000",
 });
 
 function Home() {
@@ -15,8 +15,9 @@ function Home() {
   const [reviews, setReviews] = useState([]);
   const [filteredReviews, setFilteredReviews] = useState([]);
   const [brandName, setBrandName] = useState("");
-  const [modelDetail, setModelDetail] = useState({});
+  const [modelName, setModelName] = useState("");
   const [filter, setFilter] = useState("");
+  const [modelDetail, setModelDetail] = useState({});
   const [timeId, setTimeId] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorStatus, setErrorStatus] = useState({ type: "", message: "" });
@@ -26,46 +27,61 @@ function Home() {
       setLoading(true);
       try {
         let response = await client.get(`/api/reviews/`);
-        let fetchedReviews = await response.data;
+        let fetchedReviews = response.data;
         let uniqueModels = UniqueModels(fetchedReviews);
         setModels(uniqueModels);
         setReviews(fetchedReviews);
+        setErrorStatus({ type: "", message: "" });
       } catch (error) {
         setErrorStatus({ type: "network", message: "Something went wrong with the network." });
       } finally {
         setLoading(false);
       }
     };
-
     fetchPost();
   }, []);
 
   useEffect(() => {
-    if (brandName || filter) {
+    const queryParams = [];
+
+    if (brandName) {
+      queryParams.push(`carname=${encodeURIComponent(brandName)}`);
+    }
+    if (filter) {
+      queryParams.push(`segment=${encodeURIComponent(filter)}`);
+    }
+    if (modelName) {
+      queryParams.push(`model_name=${encodeURIComponent(modelName)}`);
+    }
+
+    const endPoint = `/api/reviews/?${queryParams.join("&")}`;
+
+    if (queryParams.length === 0) {
+      setFilteredModels(models);
+      setFilteredReviews(reviews);
+      setErrorStatus({ type: "", message: "" });
+    } else {
       const newFilteredModels = async () => {
         setLoading(true);
         try {
-          let response = await client.get(`/api/reviews/?carname=${brandName}&segment=${filter}`);
-          let fetchedReviews = await response.data;
+          let response = await client.get(endPoint);
+
+          let fetchedReviews = response.data;
           setFilteredModels(UniqueModels(fetchedReviews));
           setFilteredReviews(fetchedReviews);
           setErrorStatus({ type: "", message: "" });
         } catch (error) {
-          console.log(error)
+
           setErrorStatus({ type: "not_found", message: "No models found." });
         } finally {
           setLoading(false);
         }
       };
       newFilteredModels();
-    } else {
-      setFilteredModels(models);
-      setFilteredReviews(reviews);
-      setErrorStatus({ type: "", message: "" });
     }
-  }, [brandName, models, reviews, filter]);
+  }, [brandName, modelName, filter, models, reviews]);
 
-  function handleClick() {
+  function handleScrollClick() {
     if (titleRef.current) {
       titleRef.current.scrollIntoView({ behavior: "smooth" });
     }
@@ -103,15 +119,16 @@ function Home() {
       <CarInfoPanel
         brandName={brandName}
         filter={filter}
-        loading={loading}
-        handleClick={handleClick}
+        modelName={modelName}
         models={filteredModels}
-        reviews={filteredReviews}
-        error={errorStatus}
         modelDetail={modelDetail}
+        loading={loading}
+        handleScrollClick={handleScrollClick}
+        error={errorStatus}
         setModelDetail={setModelDetail}
+        setModelName={setModelName}
       ></CarInfoPanel>
-      <Reviews title={titleRef} modelDetail={modelDetail} reviews={reviews}></Reviews>
+      <Reviews title={titleRef} reviews={filteredReviews}></Reviews>
       <Footer></Footer>
     </div>
   );
