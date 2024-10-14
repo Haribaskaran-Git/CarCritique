@@ -6,7 +6,7 @@ import Reviews from "../components/Reviews";
 import axios from "axios";
 
 const client = axios.create({
-  baseURL: "http://16.16.179.209:8000",
+  baseURL: "http://16.16.192.199:8000",
 });
 
 function Home() {
@@ -18,10 +18,11 @@ function Home() {
   const [modelName, setModelName] = useState("");
   const [filter, setFilter] = useState("");
   const [modelDetail, setModelDetail] = useState({});
-  const [timeId, setTimeId] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorStatus, setErrorStatus] = useState({ type: "", message: "" });
+  const [timeId, setTimeId] = useState("");
   const titleRef = useRef(null);
+
   useEffect(() => {
     const fetchPost = async () => {
       setLoading(true);
@@ -32,27 +33,25 @@ function Home() {
         setModels(uniqueModels);
         setReviews(fetchedReviews);
         setErrorStatus({ type: "", message: "" });
+
+        if (uniqueModels.length > 0) {
+          setModelDetail(uniqueModels[0]);
+        }
       } catch (error) {
         setErrorStatus({ type: "network", message: "Something went wrong with the network." });
       } finally {
         setLoading(false);
       }
     };
+
     fetchPost();
   }, []);
 
   useEffect(() => {
     const queryParams = [];
-
-    if (brandName) {
-      queryParams.push(`carname=${encodeURIComponent(brandName)}`);
-    }
-    if (filter) {
-      queryParams.push(`segment=${encodeURIComponent(filter)}`);
-    }
-    if (modelName) {
-      queryParams.push(`model_name=${encodeURIComponent(modelName)}`);
-    }
+    if (brandName) queryParams.push(`carname=${encodeURIComponent(brandName)}`);
+    if (filter) queryParams.push(`segment=${encodeURIComponent(filter)}`);
+    if (modelName) queryParams.push(`model_name=${encodeURIComponent(modelName)}`);
 
     const endPoint = `/api/reviews/?${queryParams.join("&")}`;
 
@@ -65,13 +64,17 @@ function Home() {
         setLoading(true);
         try {
           let response = await client.get(endPoint);
-
           let fetchedReviews = response.data;
           setFilteredModels(UniqueModels(fetchedReviews));
           setFilteredReviews(fetchedReviews);
           setErrorStatus({ type: "", message: "" });
-        } catch (error) {
 
+          if (fetchedReviews.length > 0) {
+            setModelDetail(fetchedReviews[0]);
+          } else {
+            setModelDetail({});
+          }
+        } catch (error) {
           setErrorStatus({ type: "not_found", message: "No models found." });
         } finally {
           setLoading(false);
@@ -79,13 +82,18 @@ function Home() {
       };
       newFilteredModels();
     }
-  }, [brandName, modelName, filter, models, reviews]);
+  }, [brandName, modelName, filter,models,reviews]);
 
-  function handleScrollClick() {
-    if (titleRef.current) {
-      titleRef.current.scrollIntoView({ behavior: "smooth" });
+  const handleCarClick = async (model) => {
+    setModelDetail(model); 
+    try {
+      const response = await client.get(`/api/reviews/?model_name=${model.Model_Name}`);
+      setFilteredReviews(response.data); 
+      setErrorStatus({ type: "", message: "" });
+    } catch (error) {
+      setErrorStatus({ type: "fetch_error", message: "Failed to fetch reviews." });
     }
-  }
+  };
 
   function UniqueModels(fetchedReviews) {
     const modelRatings = fetchedReviews.reduce((acc, review) => {
@@ -98,16 +106,15 @@ function Home() {
       return acc;
     }, {});
 
-    const uniqueModels = Object.entries(modelRatings).map(([modelName, { id, totalRating, count, price }]) => ({
-      id: id,
+    return Object.entries(modelRatings).map(([modelName, { id, totalRating, count, price }]) => ({
+      id,
       Model_Name: modelName,
       Average_Rating: (totalRating / count).toFixed(2),
       Price: price,
     }));
-    return uniqueModels;
   }
 
-  const debounce = function (func, delay) {
+  const debounce = (func, delay) => {
     clearTimeout(timeId);
     let id = setTimeout(func, delay);
     setTimeId(id);
@@ -115,7 +122,7 @@ function Home() {
 
   return (
     <div className="home">
-      <NavBar setBrandName={setBrandName} setFilter={setFilter} debounce={debounce}></NavBar>
+      <NavBar setBrandName={setBrandName} setFilter={setFilter} debounce={debounce} />
       <CarInfoPanel
         brandName={brandName}
         filter={filter}
@@ -123,13 +130,13 @@ function Home() {
         models={filteredModels}
         modelDetail={modelDetail}
         loading={loading}
-        handleScrollClick={handleScrollClick}
+        handleScrollClick={() => titleRef.current.scrollIntoView({ behavior: "smooth" })}
         error={errorStatus}
-        setModelDetail={setModelDetail}
         setModelName={setModelName}
-      ></CarInfoPanel>
-      <Reviews title={titleRef} reviews={filteredReviews}></Reviews>
-      <Footer></Footer>
+        handleCarClick={handleCarClick} 
+      />
+      <Reviews title={titleRef} reviews={filteredReviews} loading={loading}/>
+      <Footer />
     </div>
   );
 }
